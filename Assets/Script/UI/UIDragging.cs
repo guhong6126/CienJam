@@ -14,25 +14,25 @@ public class UIDragging : MonoBehaviour
     private Canvas canvas;
     private Vector2 dragOffset;  // 오프셋 변수 추가
 
+    // 드롭할 수 있는 영역을 여러 개 설정 가능하도록 변경
+    public List<GameObject> dropAreas;
+
     void Start()
     {
         uiLayerMask = LayerMask.GetMask("File");
 
-        // GraphicRaycaster는 Canvas 객체에 있어야 함
         raycaster = GetComponent<GraphicRaycaster>();
         if (raycaster == null)
         {
             Debug.LogError("GraphicRaycaster is missing from the GameObject.");
         }
 
-        // EventSystem은 Scene에 있어야 함
         eventSystem = EventSystem.current;
         if (eventSystem == null)
         {
             Debug.LogError("EventSystem is missing from the Scene.");
         }
 
-        // Canvas 객체가 제대로 설정되었는지 확인
         canvas = GetComponentInParent<Canvas>();
         if (canvas == null)
         {
@@ -49,7 +49,11 @@ public class UIDragging : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            DestroyGhostObject();
+            if (ghostObject != null)
+            {
+                TryDropObject();
+                DestroyGhostObject();
+            }
             selectedObject = null;
         }
 
@@ -84,14 +88,15 @@ public class UIDragging : MonoBehaviour
 
     void CreateGhostObject()
     {
-        // 원래 오브젝트를 복제하여 반투명 오브젝트 생성
         ghostObject = Instantiate(selectedObject, selectedObject.transform.parent);
         var image = ghostObject.GetComponent<Image>();
         var color = image.color;
         color.a = 0.5f;  // 반투명으로 설정
         image.color = color;
 
-        // 마우스 위치에 맞춰 반투명 오브젝트 위치 설정 (오프셋 고려)
+        // ghostObject의 레이어를 "Ignore Raycast"로 설정하여 Raycast에서 제외
+        ghostObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+
         RectTransform ghostRectTransform = ghostObject.GetComponent<RectTransform>();
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
@@ -100,7 +105,6 @@ public class UIDragging : MonoBehaviour
             out Vector2 localPoint
         );
 
-        // 오프셋을 계산하고 적용
         RectTransform selectedRectTransform = selectedObject.GetComponent<RectTransform>();
         dragOffset = (Vector2)selectedRectTransform.localPosition - localPoint;
         ghostRectTransform.localPosition = localPoint + dragOffset;
@@ -122,11 +126,65 @@ public class UIDragging : MonoBehaviour
 
     void DestroyGhostObject()
     {
-        // 드래그가 끝나면 반투명 오브젝트를 제거
         if (ghostObject != null)
         {
+            ghostObject.layer = LayerMask.NameToLayer("UI");  // 원래 레이어로 되돌리기
             Destroy(ghostObject);
             ghostObject = null;
         }
+    }
+
+    void TryDropObject()
+    {
+        pointerEventData = new PointerEventData(eventSystem);
+        pointerEventData.position = Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerEventData, results);
+
+        // Ignore Raycast 레이어를 무시하는 필터링
+        results.RemoveAll(result => result.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"));
+
+        foreach (RaycastResult result in results)
+        {
+            GameObject hitObject = result.gameObject;
+            Debug.Log($"Raycast hit: {hitObject.name} on layer {LayerMask.LayerToName(hitObject.layer)}");
+
+            foreach (var dropArea in dropAreas)
+            {
+                ScrollRect scrollRect = dropArea.GetComponent<ScrollRect>();
+                if (scrollRect != null)
+                {
+                    GameObject viewport = scrollRect.viewport.gameObject;
+
+                    // Viewport 영역에 드롭되었는지 확인
+                    if (hitObject == viewport || hitObject.transform.IsChildOf(viewport.transform))
+                    {
+                        Debug.Log($"Dropped on viewport: {viewport.name}");
+                        CreateDroppedImage(scrollRect.content.gameObject);
+                        return;
+                    }
+                }
+            }
+        }
+
+        Debug.Log("No valid drop area found.");
+    }
+
+    void CreateDroppedImage(GameObject parent)
+    {
+        GameObject newImage = Instantiate(selectedObject, parent.transform);
+
+        // 부모의 중앙에 위치시키거나 필요한 위치로 조정
+        RectTransform newImageRectTransform = newImage.GetComponent<RectTransform>();
+        newImageRectTransform.localPosition = Vector3.zero; // 이 위치가 Content 영역 내에서 적절한지 확인
+        newImageRectTransform.sizeDelta = new Vector2(100, 100); // 필요에 따라 크기를 조정
+
+        var image = newImage.GetComponent<Image>();
+        var color = image.color;
+        color.a = 1.0f;  // 불투명하게 설정
+        image.color = color;
+
+        Debug.Log($"Dropped object into {parent.name}");
     }
 }
