@@ -8,10 +8,10 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] dropables;
     [SerializeField] private TMP_Text nameText;
-
+    public Transform parent;
     public EventSystem eventSystem;
     public GraphicRaycaster graphicRaycaster;
-
+    public GameObject prefab_;
     public bool isDragging = false;
     private GameObject selectedObject = null;
     public bool isClickingBomb;
@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     private Vector3 previousMousePosition;
     private Vector3 currentMousePosition;
     private Vector2 previousPos;
+    [SerializeField] private List<int> bottoms;
 
     public GameObject detailPage;
 
@@ -50,6 +51,11 @@ public class UIManager : MonoBehaviour
             {
                 if (result.gameObject.GetComponent<ObjController>() != null)
                 {
+                    if (result.gameObject.transform.parent.gameObject.GetComponentInChildren<DropArea>() != null)
+                    {
+                        dropArea = result.gameObject.transform.parent.gameObject.GetComponentInChildren<DropArea>();
+                    }
+                    
                     if (result.gameObject.GetComponent<ObjController>().objType.isParent)
                     {
                         Debug.Log(result.gameObject.name);
@@ -82,6 +88,8 @@ public class UIManager : MonoBehaviour
                         selectedObject = result.gameObject;
                         isDragging = true;
                     }
+
+                    
 
                     RectTransform rectTransform = selectedObject.GetComponent<RectTransform>();
                     if (rectTransform != null)
@@ -118,7 +126,7 @@ public class UIManager : MonoBehaviour
                 if (isInRange)
                 {
                     Debug.LogError("Target UI is Instantiated");
-                    GameObject obj = Instantiate(prefab, dropArea.detectionArea.transform.gameObject.GetComponentInChildren<GameObject>().transform);
+                    GameObject obj = Instantiate(prefab, dropArea.detectionArea.transform.gameObject.transform);
                     obj.name = selectedObject.name;
                     obj.GetComponent<InstManager>().chageName();
                     Debug.Log(obj.name);
@@ -134,6 +142,30 @@ public class UIManager : MonoBehaviour
             }
             
             selectedObject = null;
+        }
+    }
+
+    public void setBottom(int i)
+    {
+        if (!bottoms.Contains(i))
+        {
+            bottoms.Add(i);
+            GameObject gm = Instantiate(prefab_, parent);
+            gm.GetComponent<BottomListManager>().id = i;
+            gm.GetComponent<BottomListManager>().setImgNText();
+        }
+        else
+        {
+            bottoms.Remove(i);
+            BottomListManager theobj = null;
+            foreach (BottomListManager obj in parent.GetComponentsInChildren<BottomListManager>())
+            {
+                if (obj.id == i)
+                {
+                    theobj = obj;
+                }
+            }
+            Destroy(theobj.gameObject);
         }
     }
 

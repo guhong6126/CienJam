@@ -6,6 +6,10 @@ using UnityEngine.EventSystems;
 
 public class CloseWindow : MonoBehaviour, IPointerClickHandler
 {
+    public GameObject prefab;
+    
+    
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         // 클릭된 오브젝트를 부모의 가장 마지막 자식으로 이동시킴
@@ -21,19 +25,10 @@ public class CloseWindow : MonoBehaviour, IPointerClickHandler
     public void Show()
     {
         gameObject.SetActive(true);
-
-        var seq = DOTween.Sequence();
-
-        seq.Play();
     }
 
     public void Hide()
     {
-        var seq = DOTween.Sequence();
-
-        seq.Play().OnComplete(() =>
-        {
-            gameObject.SetActive(false);
-        });
+        gameObject.SetActive(false);
     }
 }
