@@ -65,7 +65,8 @@ public class UIManager : MonoBehaviour
                     {
                         selectedObject = result.gameObject;
                         nameText.text = "File Name: " + result.gameObject.name;
-                        dropArea.targetUI = result.gameObject.GetComponent<RectTransform>();
+                        if(dropArea != null)
+                            dropArea.targetUI = result.gameObject.GetComponent<RectTransform>();
                         if (!isOnce)
                         {
                             previousPos = selectedObject.transform.position;
@@ -122,7 +123,7 @@ public class UIManager : MonoBehaviour
                 if (isInRange)
                 {
                     Debug.LogError("Target UI is Instantiated");
-                    GameObject obj = Instantiate(prefab, parentObj);
+                    GameObject obj = Instantiate(prefab, detailPage.transform.gameObject.GetComponentInChildren<GameObject>().transform);
                     obj.name = selectedObject.name;
                     obj.GetComponent<InstManager>().chageName();
                     Debug.Log(obj.name);
