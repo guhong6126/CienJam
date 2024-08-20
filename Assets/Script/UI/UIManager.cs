@@ -168,7 +168,26 @@ public class UIManager : MonoBehaviour
                     GameObject obj = Instantiate(prefab, dropArea.detectionArea.transform.gameObject.GetComponentInChildren<VerticalLayoutGroup>().gameObject.transform);
                     obj.name = selectedObject.name;
                     obj.GetComponent<InstManager>().chageName();
-                    Debug.Log(obj.name);
+
+                    //파일 전송 퀘스트 성공 여부 확인
+                    List<string> nameIndex = new List<string>() { "이대리", "남대리", "나대리", "김과장", "이과장", "한과장", "차과장", "김부장", "임부장" };
+                    int receiveIndex = nameIndex.IndexOf((string)dropArea.detectionArea.gameObject.transform.parent.gameObject.name) + 1;
+                    QuestManager quest = GameObject.Find("GameManager").GetComponent<QuestManager>();
+                    bool isExist = false;
+                    foreach (KeyValuePair<int, QuestData> kv in quest.questList)
+                    {
+                        if (kv.Key == 10 + receiveIndex)
+                        {
+                            isExist = true;
+                        }
+                    }
+                    if (isExist)
+                    {
+                        if (quest.questList[10 + receiveIndex].fileName == obj.name)
+                        {
+                            quest.SuccessQuest(10 + receiveIndex);
+                        }
+                    }
                     dropArea.targetUI = null;
                     isInRange = false;
                 }

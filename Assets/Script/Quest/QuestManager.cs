@@ -12,14 +12,16 @@ public class QuestManager : MonoBehaviour
     [SerializeField] List<MessengerManager> messenge = new List<MessengerManager>();
 
     //공통
-    List<int> id = new List<int>() {27, 28, 29};                                         //존재하는 id 리스트로 정리
+    List<int> id = new List<int>() { 11, 12, 13, 14, 15, 16, 17, 18, 27, 28, 29 };                                         //존재하는 id 리스트로 정리
     public Dictionary<int, QuestData> questList;                                         //현재 수락한 퀘스트 정리
     Dictionary<int, string> successText = new Dictionary<int, string>() { { 1, "확인했어요, 수고 많으셨습니다!" }, { 2, "잘 받았습니다. 감사합니다." }, { 3, "고마워!!!!!! =^.^=" }, { 4, "확인했어. 수고했다" }, { 5, "확인." }, { 6, "확인했습니다. 다음부턴 빨리 좀 주세요." }, { 7, "확인했다." }, { 8, "확인완료, 수고 많았다." }, { 9, "잘 확인했어, 고마워!" } };
     Dictionary<int, string> failText = new Dictionary<int, string>() { { 1, "바쁘시다면 하는 수 없죠... 다음에는 더 빨리 부탁드릴게요!" }, { 2, "안보내셔도 괜찮을 것 같습니다." }, { 3, "안돼!!!너무 늦어버렸잖아!! ( ,_,)" }, { 4, "너무 늦었군. 앞으론 더 빨리 해줘." }, { 5, "다른 사람에게 부탁했습니다." }, { 6, "늦어도 너무 늦어요. 됐습니다, 다른 사람에게 부탁할게요." }, { 7, "이미 늦었다. 괜찮아." }, { 8, "늦어버렸네. 그런 김에 내 개그 하나만 더 듣고가겠나? 지하철이 믿는 사상은? \"발빠짐주의\"! 하하하!" }, { 9, "늦었네. 괜찮아, 다음번엔 더 빨리 보내줘." } };
 
     //파일(10번대)에 사용
-    List<string> fileName = new List<string>() {"dd", "cc"};                             //존재하는 파일이름 리스트로 정리
+    List<string> fileName = new List<string>() { "2024_분기별_매출_보고서.xlsx", "8월_프로젝트_진행_현황_보고서.pptx", "9월_신규_고객_리스트_업데이트.xlsx", "주간_업무_계획서_7월_둘째주.docx", "마케팅_캠페인_결과_분석.pptx", "제품_개발_타임라인.xlsx", "회의_자료_2024_08_20.docx", "팀_내_업무_분장표.xlsx", "월별_예산_배분_계획.xlsx", "계약서_초안_검토_의견.docx", "2024_11월_프로젝트_예산_계획.xlsx", "고객_만족도_조사_결과_제품0025.pptx", "고객_만족도_조사_결과_제품0028.pptx", "고객_만족도_조사_결과_제품0029.pptx", "고객_만족도_조사_결과_제품0033.pptx", "연간_마케팅_플랜_보고서.docx", "3월_부서별_성과_분석_2024.xlsx", "신제품_출시_일정_관리.xlsx", "내부_교육_자료_정리.pptx", "협력사_계약_현황_리스트.xlsx", "팀_목표_설정_및_성과_평가.docx", "프로모션_기획서_초안.docx", "프로젝트_예산_계획_2024_1월.xlsx", "경쟁사_동향_분석_보고서.pptx", "경쟁사_동향_분석_보고서_최종.pptx", "경쟁사_동향_분석_보고서_최최종.pptx", "경쟁사_동향_분석_보고서_리얼최최최종.pptx" };                             //존재하는 파일이름 리스트로 정리
+    List<List<int>> difficulty1 = new List<List<int>>() { new List<int> { 1, 2, 3, 4 }, new List<int> { 1, 2, 3, 4 }, new List<int> { 1, 2, 4 }, new List<int> { 1, 2, 3, 4 }, new List<int> { 2, 3 }, new List<int> { 2, 3 }, new List<int> { 2, 3, 4 }, new List<int> { 4 } }; 
     Dictionary<int, string> textData1 = new Dictionary<int, string>() { { 11, "안녕하세요! 혹시 {0} 파일 좀 보내주실 수 있을까요? 번거로우시겠지만 부탁드려요. 감사합니다!" }, { 21, "혹시 가능하시면 {0} 파일 좀 보내주실 수 있을까요? 필요해서 그런데, 늦지 않게 보내주시면 정말 감사하겠습니다. 오늘 안에 부탁드릴게요." }, { 31, "바쁘신 와중에 죄송한데요, 혹시 가능하시면 {0} 파일을 보내주실 수 있을까요? 제가 좀 급하게 필요하게 된 상황이라서요. 시간이 되실 때 편한 시간에 보내주시면 정말 감사하겠습니다. 늦어지지 않게 챙겨주시면 정말 큰 도움이 될 것 같아요." }, { 41, "지금 바로 {0} 파일이 필요합니다. 정말 급한 상황이라 최대한 빨리 보내주세요. 부탁드립니다, 지금 바로요!" }, { 12, "혹시 괜찮으시면 {0} 파일 좀 보내주실 수 있을까요? 지금 필요한 상황이라서요. 오늘 안으로 받을 수 있으면 정말 좋겠습니다." }, { 22, "바쁘시겠지만 {0} 파일 좀 보내주실 수 있을까요? 지금 필요해서요. 시간이 되시면 최대한 빨리 부탁드려요." }, { 32, "죄송한데 {0} 파일 보내주실 수 있으실까요? 상황이 좀 급해져서요. 최대한 빨리 부탁드립니다." }, { 42, "지금 당장 {0} 파일 보내주셔야 할 것 같습니다. 시간이 너무 촉박해서요, 최대한 빨리 부탁드립니다. 정말 급한 상황입니다, 바로 보내주시면 감사하겠습니다." }, { 13, "{0}!!!!!!! 오늘 안으로 부탁할게 >.ㅇ" }, { 23, "파일 좀 부탁할게. 내가 문서 정리를 좀 더럽게 했어, 양해해줘!" }, { 43, "큰일이야!!!! 회의가 당장 코앞인데 자료를 깜빡했어! 당장 {0} 파일 좀 부탁할게! 지금 당장!!!" }, { 14, "{0} 파일 좀 빨리 보내줘. 오늘 중으로 부탁할게." }, { 24, "{0} 파일 좀 보내줘. 지금 필요해서 그러니까 최대한 빨리 부탁해." }, { 34, "급해서 그러는데 {0} 파일 지금 당장 보내. 서둘러서 보내줘야 할 것 같아." }, { 44, "{0} 파일 좀 서둘러서 보내줘야 할 것 같아. 상황이 급하니까 바로 처리해줘." }, { 25, "{0} 파일 보내주셔야 할 것 같은데요. 제가 기다리고 있으니까 늦지 않게 보내주시길 바랍니다." }, { 35, "{0} 파일 말인데, 언제쯤 보내실 건가요? 최대한 빨리 보내주셨으면 합니다." }, { 26, "{0} 파일 아직 못 받았습니다. 빨리 보내주시면 좋겠습니다. 시간 너무 끌지 마시고요." }, { 36, "{0} 파일 좀 보내주시죠? 지금 당장 필요해서 그러는데, 빨리 보내주시면 좋겠네요." }, { 27, "{0} 파일 아직도 안 왔네. 빨리 보내라, 더 기다리기 싫다." }, { 37, "{0} 파일 보내라니까. 늦지 말고 빨리 보내." }, { 47, "지금 당장 {0} 파일 보내라. 시간 없으니까 최대한 빨리 부탁한다. 지금 바로 필요하다." }, { 48, "내가 MZ 조크 하나 배워왔어. 달 뒤엔 무엇이 있는지 아나? 달뒤 달뒤 단 밤양갱~ 하하, 나도 엠제트에 좀 더 가까워졌을까? 아무튼, 용건은 {0} 파일좀 보내줘. 되도록 빨리 부탁할게." } };
+
 
     //메일(20번대)에 사용
     public Dictionary<int, string> mailReceiver;                                         //메일 수신자 정리
@@ -74,13 +76,20 @@ public class QuestManager : MonoBehaviour
                 SendMessages(id, textData2[difficulty * 10 + id % 10], mailReceiver[id], fileName);
 
                 //테스트용
+                /*
                 Debug.Log(mailReceiver[id]);
                 Debug.Log(fileName);
                 Debug.Log(maxTime);
+                */
             }
             else if ((int)(id / 10) == 1)
             {
                 fileName = this.fileName[Random.Range(0, this.fileName.Count)];
+                difficulty = difficulty1[id%10 - 1][Random.Range(0, difficulty1[id%10 - 1].Count)];
+                if (difficulty == 4) maxTime = 30;
+                else if (difficulty == 3) maxTime = 60;
+                else if (difficulty == 2) maxTime = 180;
+                else maxTime = 0;
                 SendMessages(id, textData1[difficulty * 10 + id % 10], fileName, null);
                 //maxTime 값 변경 스크립트 추가해야함
             }
@@ -111,6 +120,7 @@ public class QuestManager : MonoBehaviour
     public void SuccessQuest(int id)
     {
         SendMessages(id, successText[id % 10], null, null);
+        Debug.Log(string.Format("{0} success", id));
         questList.Remove(id);
         if ((int)(id / 10) == 2) mailReceiver.Remove(id);
         this.id.Add(id);
