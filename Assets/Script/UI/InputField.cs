@@ -3,8 +3,8 @@ using TMPro;
 
 public class InputField : MonoBehaviour
 {
-    public TMP_InputField inputField;  // TMP_InputField¸¦ ÂüÁ¶
-    private string storedText;         // ÀÔ·ÂµÈ ÅØ½ºÆ®¸¦ ÀúÀåÇÒ º¯¼ö
+    public TMP_InputField inputField;  // TMP_InputFieldï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public string storedText;         // ï¿½Ô·Âµï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     void Start()
     {

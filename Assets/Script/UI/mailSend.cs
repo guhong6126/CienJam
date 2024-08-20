@@ -9,6 +9,7 @@ public class mailSend : MonoBehaviour
     public Button activateButton;   // �̹����� Ȱ��ȭ�� ��ư
 
     [SerializeField] mailSelect reciverName;
+    [SerializeField] InputField title;
 
     private void Start()
     {
@@ -31,11 +32,12 @@ public class mailSend : MonoBehaviour
         }
 
         foreach(int index in questList)
-        {
-            if (quest.questList[index].fileName == )
+        { 
+            if (quest.questList[index].fileName == title.storedText)
             {
-
+                quest.SuccessQuest(index);
             }
+            
         }
 
         targetImage.SetActive(true);
