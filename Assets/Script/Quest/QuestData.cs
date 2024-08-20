@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class QuestData
 {
-    int questId;
-    string fileName;
+    public int questId;
+    public string fileName;
+
     float currentTime;
     float maxTime;
     TimeManager time;
