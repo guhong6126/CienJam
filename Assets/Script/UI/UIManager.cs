@@ -31,12 +31,7 @@ public class UIManager : MonoBehaviour
 
     public bool isInRange;
     
-    DropArea dropArea;
-
-    private void Awake()
-    {
-        dropArea = FindObjectOfType<DropArea>();
-    }
+    public DropArea dropArea;
 
     void Update()
     {
@@ -123,7 +118,7 @@ public class UIManager : MonoBehaviour
                 if (isInRange)
                 {
                     Debug.LogError("Target UI is Instantiated");
-                    GameObject obj = Instantiate(prefab, detailPage.transform.gameObject.GetComponentInChildren<GameObject>().transform);
+                    GameObject obj = Instantiate(prefab, dropArea.detectionArea.transform.gameObject.GetComponentInChildren<GameObject>().transform);
                     obj.name = selectedObject.name;
                     obj.GetComponent<InstManager>().chageName();
                     Debug.Log(obj.name);

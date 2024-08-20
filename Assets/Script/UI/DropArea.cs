@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class DropArea : MonoBehaviour
+public class DropArea : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
 {
     public RectTransform targetUI; 
     public RectTransform detectionArea;
@@ -50,5 +50,15 @@ public class DropArea : MonoBehaviour
         }
 
         return false;
+    }
+    
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        uIManager.dropArea = this;
+    }
+    
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        uIManager.dropArea = null;
     }
 }
