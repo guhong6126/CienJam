@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] dropables;
+    [SerializeField] private TMP_Text nameText;
 
     public EventSystem eventSystem;
     public GraphicRaycaster graphicRaycaster;
@@ -18,6 +20,8 @@ public class UIManager : MonoBehaviour
     private Vector3 previousMousePosition;
     private Vector3 currentMousePosition;
     private Vector2 previousPos;
+
+    public GameObject detailPage;
 
     private Color color;
     private RectTransform rectTransform;
@@ -37,14 +41,16 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         currentMousePosition = Input.mousePosition;
-
+       
+        
         if (Input.GetMouseButtonDown(0))
         {
             PointerEventData pointerEventData = new PointerEventData(eventSystem);
-            pointerEventData.position = currentMousePosition;
-            List<RaycastResult> raycastResults = new List<RaycastResult>();
+            pointerEventData.position = currentMousePosition; 
+            List<RaycastResult> raycastResults = new List<RaycastResult>(); 
             graphicRaycaster.Raycast(pointerEventData, raycastResults);
-
+            
+            
             foreach (RaycastResult result in raycastResults)
             {
                 if (result.gameObject.GetComponent<ObjController>() != null)
@@ -58,6 +64,7 @@ public class UIManager : MonoBehaviour
                     else if (result.gameObject.GetComponent<ObjController>().objType.isNeedtoReorder)
                     {
                         selectedObject = result.gameObject;
+                        nameText.text = "File Name: " + result.gameObject.name;
                         dropArea.targetUI = result.gameObject.GetComponent<RectTransform>();
                         if (!isOnce)
                         {
@@ -115,7 +122,10 @@ public class UIManager : MonoBehaviour
                 if (isInRange)
                 {
                     Debug.LogError("Target UI is Instantiated");
-                      Instantiate(prefab, parentObj);
+                    GameObject obj = Instantiate(prefab, parentObj);
+                    obj.name = selectedObject.name;
+                    obj.GetComponent<InstManager>().chageName();
+                    Debug.Log(obj.name);
                     dropArea.targetUI = null;
                     isInRange = false;
                 }
@@ -130,5 +140,7 @@ public class UIManager : MonoBehaviour
             selectedObject = null;
         }
     }
+
+
 
 }
