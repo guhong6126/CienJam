@@ -154,7 +154,11 @@ public class UIManager : MonoBehaviour
             gm.GetComponent<BottomListManager>().id = i;
             gm.GetComponent<BottomListManager>().setImgNText();
         }
-        else
+    }
+
+    public void closeBottom(int i)
+    {
+        if (bottoms.Contains(i))
         {
             bottoms.Remove(i);
             BottomListManager theobj = null;
@@ -167,6 +171,7 @@ public class UIManager : MonoBehaviour
             }
             Destroy(theobj.gameObject);
         }
+        
     }
 
 

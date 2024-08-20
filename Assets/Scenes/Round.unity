@@ -684,7 +684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &32125385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9420,7 +9419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &488507191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9807,7 +9805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &493101769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10930,12 +10927,12 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1577981992}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: setBottom
+        m_MethodName: closeBottom
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12157,7 +12154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &601883041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12294,7 +12290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &603297947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15760,7 +15755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &744849465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19451,7 +19445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmp: {fileID: 954851972}
   maxTime: 180
-  time: 0
+  minute: 0
 --- !u!114 &910380101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22444,7 +22438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &1055728693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26471,7 +26464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &1285988849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32618,7 +32610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &1547781865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33590,7 +33581,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1577981992}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: setBottom
+        m_MethodName: closeBottom
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -35534,7 +35525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &1666020676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36962,7 +36952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &1746267887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38116,7 +38105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &1798345142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40004,12 +39992,12 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1577981992}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: setBottom
+        m_MethodName: closeBottom
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -44890,7 +44878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f5301b80a851f42b081fcab17a46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
 --- !u!114 &2120796752
 MonoBehaviour:
   m_ObjectHideFlags: 0

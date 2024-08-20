@@ -6,9 +6,6 @@ using UnityEngine.EventSystems;
 
 public class CloseWindow : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject prefab;
-    
-    
     
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -18,7 +15,6 @@ public class CloseWindow : MonoBehaviour, IPointerClickHandler
     
     void Start()
     {
-        DOTween.Init();
         gameObject.SetActive(false);
     }
 
