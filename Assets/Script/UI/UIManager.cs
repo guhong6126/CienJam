@@ -126,7 +126,7 @@ public class UIManager : MonoBehaviour
                 if (isInRange)
                 {
                     Debug.LogError("Target UI is Instantiated");
-                    GameObject obj = Instantiate(prefab, dropArea.detectionArea.transform.gameObject.transform);
+                    GameObject obj = Instantiate(prefab, dropArea.detectionArea.transform.gameObject.GetComponentInChildren<VerticalLayoutGroup>().gameObject.transform);
                     obj.name = selectedObject.name;
                     obj.GetComponent<InstManager>().chageName();
                     Debug.Log(obj.name);
@@ -138,7 +138,7 @@ public class UIManager : MonoBehaviour
                 selectedObject.GetComponent<Image>().color = color;
                 isClickingBomb = false;
                 isOnce = false;
-                dropArea.targetUI = null;
+                
             }
             
             selectedObject = null;
