@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class MessengerManager : MonoBehaviour
 {
-    RectTransform rectTrans;
-
-    private void Start()
-    {
-        rectTrans = GetComponent<RectTransform>();
-    }
+    [SerializeField] RectTransform rectTrans;
 
     public void OrderManage()
     {
