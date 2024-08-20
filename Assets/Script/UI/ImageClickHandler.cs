@@ -13,31 +13,4 @@ public class ImageClickHandler : MonoBehaviour
         popupPanel.SetActive(!isActive);
     }
 
-    public GameObject InputTextFalse = null;
-    public GameObject InputTextTrue = null;
-
-    // 다른 버튼에 연결할 메서드
-    public void ImageFalse()
-    {
-        InputTextFalse.SetActive(false);
-    }
-
-    public void ImageTrue()
-    {
-        InputTextTrue.SetActive(true);
-    }
-
-    // Scroll View의 Content 오브젝트
-    public Transform content = null;
-    // 추가할 이미지의 프리팹
-    public GameObject imagePrefab = null;
-
-    public void AcceptQuest()
-    {
-        // Content 안에 이미지 프리팹을 생성
-        GameObject newImage = Instantiate(imagePrefab, content);
-
-        // 필요에 따라 위치나 크기 조정 가능
-        // newImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
-    }
 }
