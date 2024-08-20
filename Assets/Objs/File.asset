@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: File
   m_EditorClassIdentifier: 
   name: File 1
+  isNeedtoReorder: 1
   isParent: 0
