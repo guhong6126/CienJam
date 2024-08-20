@@ -8,7 +8,7 @@ public class QuestData
     public string fileName;
 
     float currentTime;
-    float maxTime;
+    public float maxTime;
     TimeManager time;
 
     public QuestData() { }
@@ -18,7 +18,7 @@ public class QuestData
         time = GameObject.Find("GameManager").GetComponent<TimeManager>();
         this.questId = id;
         this.fileName = name;
-        this.currentTime = time.time;
-        this.maxTime = maxTime;
+        this.currentTime = time.minute;
+        this.maxTime = maxTime == 0 ? 540 : maxTime + currentTime;
     }
 }
