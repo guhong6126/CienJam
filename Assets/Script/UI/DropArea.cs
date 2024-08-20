@@ -35,6 +35,7 @@ public class DropArea : MonoBehaviour
             {
                 Debug.Log("Target UI is outside the detection range.");
             }
+
         }
     }
 
@@ -43,11 +44,11 @@ public class DropArea : MonoBehaviour
         Vector3[] targetCorners = new Vector3[4];
         Vector3[] areaCorners = new Vector3[4];
 
-        // UI ¿ÀºêÁ§Æ®µéÀÇ ÄÚ³Ê ÁÂÇ¥ °¡Á®¿À±â
+        // UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ú³ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         target.GetWorldCorners(targetCorners);
         area.GetWorldCorners(areaCorners);
 
-        // °¨Áö ¹üÀ§¿Í ´ë»ó UI ¿ÀºêÁ§Æ®ÀÇ Ãæµ¹ ¿©ºÎ¸¦ °è»ê
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½
         if (targetCorners[0].x < areaCorners[2].x && targetCorners[2].x > areaCorners[0].x &&
             targetCorners[0].y < areaCorners[2].y && targetCorners[2].y > areaCorners[0].y)
         {
