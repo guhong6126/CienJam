@@ -8,11 +8,16 @@ public class DropArea : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         GameObject droppedObject = eventData.pointerDrag;
-        if (droppedObject != null && droppedObject.GetComponent<DragImage>() != null)
+        if (droppedObject != null)
         {
-            // 드래그된 객체를 새로 인스턴스화하여 추가
-            GameObject newImage = Instantiate(droppedObject, content);
-            newImage.GetComponent<RectTransform>().localPosition = Vector3.zero;
+            Debug.Log("Dropped Object: " + droppedObject.name); // 드롭 이벤트 로그
+
+            // 드래그된 객체를 Content 안에 추가하기
+            droppedObject.transform.SetParent(content, false);
+
+            // 드롭한 객체의 위치를 다시 설정
+            droppedObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         }
     }
+
 }

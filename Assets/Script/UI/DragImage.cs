@@ -12,6 +12,12 @@ public class DragImage : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+
+        // CanvasGroup이 없으면 추가
+        if (canvasGroup == null)
+        {
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -31,7 +37,7 @@ public class DragImage : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
-        // 드래그 후 원래 위치로 되돌리기
+        // 드래그 후 원래 위치로 되돌리기 (원하지 않을 경우 제거 가능)
         rectTransform.position = initialPosition;
     }
 }
