@@ -7,8 +7,7 @@ public class TimeManager : MonoBehaviour
 {
     [SerializeField] TMP_Text tmp;
     [SerializeField] int maxTime;
-    public float time = 0;
-    int minute = 0;
+    public int minute = 0;
 
     private void Start()
     {
@@ -25,11 +24,5 @@ public class TimeManager : MonoBehaviour
         string x = hour > 2 ? "PM" : "AM";
         tmp.text = string.Format("{0:D2}:{1:D2} {2}",hour+9, minute % 60, x);
         StartCoroutine(CountTime());
-    }
-
-    //게임 진행시간 갱신 
-    void Update()
-    {
-        time += Time.deltaTime;
     }
 }
