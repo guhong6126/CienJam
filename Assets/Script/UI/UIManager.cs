@@ -34,13 +34,52 @@ public class UIManager : MonoBehaviour
     
     public DropArea dropArea;
 
+    public RightClickManager RightClickManager;
+    public GameObject RightClickMenu;
+    
+
     void Update()
     {
         currentMousePosition = Input.mousePosition;
-       
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.LogError("Click");
+
+            PointerEventData pointerEventData = new PointerEventData(eventSystem);
+            pointerEventData.position = currentMousePosition;
+
+            List<RaycastResult> raycastResults = new List<RaycastResult>();
+            graphicRaycaster.Raycast(pointerEventData, raycastResults);
+
+            bool isIcon = false;
+
+            foreach (RaycastResult result in raycastResults)
+            {
+                Debug.Log(result.gameObject.name);
+
+                if (result.gameObject.GetComponent<ObjController>() != null)
+                {
+                    Debug.LogError("DSDS");
+                    isIcon = true;
+                }
+                else
+                {
+                    Debug.LogError("DASD");
+                }
+            }
+
+            RightClickMenu.SetActive(true);
+            RightClickMenu.transform.SetAsLastSibling();
+            RightClickMenu.transform.position = new Vector2(currentMousePosition.x + 65f, currentMousePosition.y - 80f);
+            RightClickManager.isIcon = isIcon;
+        }
+
+        
         
         if (Input.GetMouseButtonDown(0))
         {
+            RightClickMenu.SetActive(false);
             PointerEventData pointerEventData = new PointerEventData(eventSystem);
             pointerEventData.position = currentMousePosition; 
             List<RaycastResult> raycastResults = new List<RaycastResult>(); 
