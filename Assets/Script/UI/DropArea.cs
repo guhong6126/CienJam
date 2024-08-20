@@ -24,12 +24,12 @@ public class DropArea : MonoBehaviour
         {
             if (IsInRange(targetUI, detectionArea))
             {
-                Debug.Log("Target UI is inside the detection range.");
+                //Debug.Log("Target UI is inside the detection range.");
                 uIManager.isInRange = true;
             }
             else
             {
-                Debug.Log("Target UI is outside the detection range.");
+                //Debug.Log("Target UI is outside the detection range.");
             }
 
         }
