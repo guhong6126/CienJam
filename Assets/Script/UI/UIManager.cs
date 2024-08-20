@@ -22,6 +22,11 @@ public class UIManager : MonoBehaviour
     private Color color;
     private RectTransform rectTransform;
     
+    public Transform parentObj;
+    public GameObject prefab;
+
+    public bool isInRange;
+    
     DropArea dropArea;
 
     private void Awake()
@@ -104,16 +109,24 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            isDragging = false; 
             if (!isDragging && isClickingBomb)
             {
+                if (isInRange)
+                {
+                    Debug.LogError("Target UI is Instantiated");
+                    Instantiate(prefab, parentObj);
+                    dropArea.targetUI = null;
+                    isInRange = false;
+                }
                 selectedObject.gameObject.transform.position = previousPos;
                 color.a = 1f;
                 selectedObject.GetComponent<Image>().color = color;
-                dropArea.targetUI = null;
                 isClickingBomb = false;
                 isOnce = false;
+                dropArea.targetUI = null;
             }
-            isDragging = false;
+            
             selectedObject = null;
         }
     }

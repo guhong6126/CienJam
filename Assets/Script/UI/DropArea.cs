@@ -1,12 +1,15 @@
-using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class DropArea : MonoBehaviour
 {
     public RectTransform targetUI; 
     public RectTransform detectionArea;
-    public Transform parentObj;
+    
 
+    public bool inRange;
     
     UIManager uIManager;
 
@@ -22,14 +25,7 @@ public class DropArea : MonoBehaviour
             if (IsInRange(targetUI, detectionArea))
             {
                 Debug.Log("Target UI is inside the detection range.");
-                if (Input.GetMouseButtonUp(0))
-                {
-                    uIManager.isDragging = false;
-                    uIManager. isClickingBomb = false;
-                    Destroy(targetUI.GetComponent<ObjController>());
-                    targetUI.gameObject.transform.parent = parentObj;
-                    targetUI = null;
-                }
+                uIManager.isInRange = true;
             }
             else
             {
@@ -43,12 +39,10 @@ public class DropArea : MonoBehaviour
     {
         Vector3[] targetCorners = new Vector3[4];
         Vector3[] areaCorners = new Vector3[4];
-
-        // UI ������Ʈ���� �ڳ� ��ǥ ��������
+        
         target.GetWorldCorners(targetCorners);
         area.GetWorldCorners(areaCorners);
-
-        // ���� ������ ��� UI ������Ʈ�� �浹 ���θ� ���
+        
         if (targetCorners[0].x < areaCorners[2].x && targetCorners[2].x > areaCorners[0].x &&
             targetCorners[0].y < areaCorners[2].y && targetCorners[2].y > areaCorners[0].y)
         {
