@@ -14,8 +14,8 @@ public class QuestManager : MonoBehaviour
     //공통
     List<int> id = new List<int>() {27, 28, 29};                                         //존재하는 id 리스트로 정리
     public Dictionary<int, QuestData> questList;                                         //현재 수락한 퀘스트 정리
-    Dictionary<int, string> successText = new Dictionary<int, string>() { };
-    Dictionary<int, string> failText = new Dictionary<int, string>() { };
+    Dictionary<int, string> successText = new Dictionary<int, string>() { { 1, "확인했어요, 수고 많으셨습니다!" }, { 2, "잘 받았습니다. 감사합니다." }, { 3, "고마워!!!!!! =^.^=" }, { 4, "확인했어. 수고했다" }, { 5, "확인." }, { 6, "확인했습니다. 다음부턴 빨리 좀 주세요." }, { 7, "확인했다." }, { 8, "확인완료, 수고 많았다." }, { 9, "잘 확인했어, 고마워!" } };
+    Dictionary<int, string> failText = new Dictionary<int, string>() { { 1, "바쁘시다면 하는 수 없죠... 다음에는 더 빨리 부탁드릴게요!" }, { 2, "안보내셔도 괜찮을 것 같습니다." }, { 3, "안돼!!!너무 늦어버렸잖아!! ( ,_,)" }, { 4, "너무 늦었군. 앞으론 더 빨리 해줘." }, { 5, "다른 사람에게 부탁했습니다." }, { 6, "늦어도 너무 늦어요. 됐습니다, 다른 사람에게 부탁할게요." }, { 7, "이미 늦었다. 괜찮아." }, { 8, "늦어버렸네. 그런 김에 내 개그 하나만 더 듣고가겠나? 지하철이 믿는 사상은? \"발빠짐주의\"! 하하하!" }, { 9, "늦었네. 괜찮아, 다음번엔 더 빨리 보내줘." } };
 
     //파일(10번대)에 사용
     List<string> fileName = new List<string>() {"dd", "cc"};                             //존재하는 파일이름 리스트로 정리
