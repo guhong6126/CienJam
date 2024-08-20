@@ -115,7 +115,7 @@ public class UIManager : MonoBehaviour
                 if (isInRange)
                 {
                     Debug.LogError("Target UI is Instantiated");
-                    Instantiate(prefab, parentObj);
+                      Instantiate(prefab, parentObj);
                     dropArea.targetUI = null;
                     isInRange = false;
                 }
