@@ -9,6 +9,7 @@ public class QuestManager : MonoBehaviour
     int maxQuest = 5;
     int successCount = 0;
     int failCount = 0;
+    int score = 0;
 
     //채팅 관련 클래스들
     [SerializeField] List<MakeText> texts = new List<MakeText>();
@@ -89,7 +90,7 @@ public class QuestManager : MonoBehaviour
                 SendMessages(id, textData1[difficulty * 10 + id % 10], fileName, null);
             }
 
-            questList.Add(id, new QuestData(id, fileName, 0));
+            questList.Add(id, new QuestData(id, fileName, maxTime, difficulty));
         }
         SetCycle();
         StartCoroutine(MakeQuest());
@@ -116,10 +117,11 @@ public class QuestManager : MonoBehaviour
     public void SuccessQuest(int id)
     {
         SendMessages(id, successText[id % 10], null, null);
+        score += 5 * questList[id].difficulty;
+        successCount += 1;
         questList.Remove(id);
         if ((int)(id / 10) == 2) mailReceiver.Remove(id);
         this.id.Add(id);
-        successCount += 1;
         PrintPoint();
     }
 
@@ -144,10 +146,11 @@ public class QuestManager : MonoBehaviour
     public void FailQuest(int id)
     {
         SendMessages(id, failText[id % 10], null, null);
+        score += 3 * questList[id].difficulty;
+        failCount += 1;
         questList.Remove(id);
         if ((int)(id / 10) == 2) mailReceiver.Remove(id);
         this.id.Add(id);
-        failCount += 1;
         PrintPoint();
     }
 

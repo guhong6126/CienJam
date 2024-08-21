@@ -8,8 +8,8 @@ public class ImageClickHandler : MonoBehaviour
 
     public void OnImageClick()
     {
-        bool isActive = popupPanel.activeSelf;
-        popupPanel.SetActive(!isActive);
+        popupPanel.transform.SetAsLastSibling();
+        popupPanel.SetActive(true);
     }
 
 }
