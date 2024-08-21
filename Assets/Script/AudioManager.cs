@@ -10,10 +10,15 @@ public class AudioManager : MonoBehaviour
     public AudioSource ErrorAudio;
     public AudioSource officeSound;
     public AudioSource alarmSound;
+    public AudioSource logonSound;
 
     public Slider BgmControl;
     public Slider SfxControl;
 
+    private void Start()
+    {
+        logonSound.Play();
+    }
 
     private void Update()
     {
