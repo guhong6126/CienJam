@@ -7,9 +7,9 @@ public class QuestManager : MonoBehaviour
     TimeManager time;
     float cycle = 3.0f;
     int maxQuest = 5;
-    int successCount = 0;
-    int failCount = 0;
-    int score = 0;
+    public int successCount = 0;
+    public int failCount = 0;
+    public int score = 0;
 
     //채팅 관련 클래스들
     [SerializeField] List<MakeText> texts = new List<MakeText>();
