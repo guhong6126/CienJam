@@ -19,6 +19,11 @@ public class LoadScene : MonoBehaviour
         SceneManager.LoadScene("Start");
     }
 
+    public void Retry()
+    {
+        SceneManager.LoadScene("Round");
+    }
+
 
     public void quitGame()
     {
