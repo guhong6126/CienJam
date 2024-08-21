@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class mailSend : MonoBehaviour
 {
     public GameObject targetImage;  // Ȱ��ȭ�� �̹��� ������Ʈ
     public Button activateButton;   // �̹����� Ȱ��ȭ�� ��ư
+    private AudioManager audioManager;
 
     [SerializeField] mailSelect reciverName;
     [SerializeField] InputField title;
@@ -16,6 +18,11 @@ public class mailSend : MonoBehaviour
         activateButton.onClick.AddListener(ActivateImage);
     }
 
+    private void Awake()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+
     //메일보내기 
     private void ActivateImage()
     {
@@ -23,6 +30,8 @@ public class mailSend : MonoBehaviour
         string text = reciverName.inputField.text;
         List<int> questList = new List<int>();
 
+        audioManager.clickAudio.Play();
+        
         foreach(KeyValuePair<int, string> kv in quest.mailReceiver)
         {
             if (kv.Value == text)
@@ -36,6 +45,7 @@ public class mailSend : MonoBehaviour
             if (quest.questList[index].fileName == title.storedText)
             {
                 quest.SuccessQuest(index);
+                
             }
             
         }

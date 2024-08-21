@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -33,10 +34,15 @@ public class UIManager : MonoBehaviour
     public bool isInRange;
     
     public DropArea dropArea;
-
+    public AudioManager audioManager;
     public RightClickManager RightClickManager;
     public GameObject RightClickMenu;
-    
+
+    private void Awake()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+
 
     void Update()
     {
@@ -191,6 +197,7 @@ public class UIManager : MonoBehaviour
                     dropArea.targetUI = null;
                     isInRange = false;
                 }
+                audioManager.ErrorAudio.Play();
                 selectedObject.gameObject.transform.position = previousPos;
                 color.a = 1f;
                 selectedObject.GetComponent<Image>().color = color;
