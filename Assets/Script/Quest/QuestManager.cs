@@ -94,7 +94,7 @@ public class QuestManager : MonoBehaviour
                 //maxTime 값 변경 스크립트 추가해야함
             }
 
-            questList.Add(id, new QuestData(id, fileName, maxTime));                    //MaxTime 스크립트 작성해야함
+            questList.Add(id, new QuestData(id, fileName, 0));
         }
         StartCoroutine(MakeQuest());
     }
