@@ -19898,7 +19898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmp: {fileID: 954851972}
-  maxTime: 180
+  maxTime: 540
   minute: 0
 --- !u!114 &910380101
 MonoBehaviour:
