@@ -97,7 +97,7 @@ public class UIManager : MonoBehaviour
                     
                     if (result.gameObject.GetComponent<ObjController>().objType.isParent)
                     {
-                        Debug.Log(result.gameObject.name);
+                        
                         selectedObject = result.gameObject.transform.parent.gameObject;
                         isDragging = true;
                     }

@@ -6,6 +6,9 @@ public class QuestManager : MonoBehaviour
 {
     TimeManager time;
     float cycle = 3.0f;
+    int maxQuest = 5;
+    int successCount = 0;
+    int failCount = 0;
 
     //채팅 관련 클래스들
     [SerializeField] List<MakeText> texts = new List<MakeText>();
@@ -59,7 +62,7 @@ public class QuestManager : MonoBehaviour
     {
         yield return new WaitForSeconds(cycle);
 
-        if (id.Count != 0)
+        if (id.Count != 0 && (questList.Count < maxQuest))
         {
             int id = this.id[Random.Range(0, this.id.Count)];
             int maxTime = 0;
@@ -74,13 +77,6 @@ public class QuestManager : MonoBehaviour
                 difficulty = Random.Range(3, 5);
                 maxTime = difficulty == 3 ? 120 : 60;
                 SendMessages(id, textData2[difficulty * 10 + id % 10], mailReceiver[id], fileName);
-
-                //테스트용
-                /*
-                Debug.Log(mailReceiver[id]);
-                Debug.Log(fileName);
-                Debug.Log(maxTime);
-                */
             }
             else if ((int)(id / 10) == 1)
             {
@@ -91,11 +87,11 @@ public class QuestManager : MonoBehaviour
                 else if (difficulty == 2) maxTime = 180;
                 else maxTime = 0;
                 SendMessages(id, textData1[difficulty * 10 + id % 10], fileName, null);
-                //maxTime 값 변경 스크립트 추가해야함
             }
 
             questList.Add(id, new QuestData(id, fileName, 0));
         }
+        SetCycle();
         StartCoroutine(MakeQuest());
     }
 
@@ -108,7 +104,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (time.minute < 120)
         {
-            cycle = Random.Range(5f, 15f);
+            cycle = Random.Range(10f, 15f);
         }
         else
         {
@@ -120,10 +116,11 @@ public class QuestManager : MonoBehaviour
     public void SuccessQuest(int id)
     {
         SendMessages(id, successText[id % 10], null, null);
-        Debug.Log(string.Format("{0} success", id));
         questList.Remove(id);
         if ((int)(id / 10) == 2) mailReceiver.Remove(id);
         this.id.Add(id);
+        successCount += 1;
+        PrintPoint();
     }
 
     //퀘스트 실패판단
@@ -149,7 +146,13 @@ public class QuestManager : MonoBehaviour
         SendMessages(id, failText[id % 10], null, null);
         questList.Remove(id);
         if ((int)(id / 10) == 2) mailReceiver.Remove(id);
-        Debug.Log(string.Format("remove {0}", id));
         this.id.Add(id);
+        failCount += 1;
+        PrintPoint();
+    }
+
+    public void PrintPoint()
+    {
+        Debug.Log(string.Format("성공{0} / 실패{1}", successCount, failCount));
     }
 }
