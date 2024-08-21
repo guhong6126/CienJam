@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    public void ClickStartButton()
+    public void start()
     {
-        SceneManager.LoadScene("Round");
+        SceneManager.LoadScene("Round 1");
+    }
+
+    public void calculate()
+    {
+        SceneManager.LoadScene("Start");
     }
 }

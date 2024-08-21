@@ -539,7 +539,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1371927435}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: ClickStartButton
+        m_MethodName: start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -732,10 +732,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCD9C\uADFC\uD558\uAE30"
+  m_text: attendance
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 910234c493e20754daf1038b408f16f0, type: 2}
-  m_sharedMaterial: {fileID: 3838057976412594149, guid: 910234c493e20754daf1038b408f16f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 359a6e7b6a96b452aa0b194d8e8dfe29, type: 2}
+  m_sharedMaterial: {fileID: -4173983181198420435, guid: 359a6e7b6a96b452aa0b194d8e8dfe29, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -843,7 +843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030518, y: -22}
+  m_AnchoredPosition: {x: -0.000030517578, y: -22}
   m_SizeDelta: {x: 131.315, y: 136.6744}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1542533854
