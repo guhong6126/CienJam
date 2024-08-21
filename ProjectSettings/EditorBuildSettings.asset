@@ -8,18 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SimplePixelUI/ExamleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Ahn/Start.unity
-    guid: 76ccd1493e54c284ca9f8994f4fbaae7
-  - enabled: 0
-    path: Assets/Scenes/Round 1.unity
-    guid: 23a5fc79921b344d29eb08da5853616e
-  - enabled: 0
-    path: Assets/Scenes/calculate.unity
-    guid: 38a489a08b59d2b40bb94405bd089904
   - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: b553a6456fb19400a8957c1c8f6453e7
+  - enabled: 1
+    path: Assets/Scenes/Round 1.unity
+    guid: 23a5fc79921b344d29eb08da5853616e
   - enabled: 1
     path: Assets/Scenes/Round.unity
     guid: b71adbefe192d46d1a1f11cbd7f3bded
