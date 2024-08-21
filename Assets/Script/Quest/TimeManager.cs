@@ -1,7 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour
 {
@@ -22,15 +22,7 @@ public class TimeManager : MonoBehaviour
         minute += (int)(540 / maxTime);
         int hour = minute > 239 ? (int)(minute / 60) - 12 : (int)(minute / 60);
         string x = hour > 2 ? "PM" : "AM";
-        tmp.text = string.Format("{0:D2}:{1:D2} {2}", hour + 9, minute % 60, x);
-
-        if (minute >= 540)
-        {
-            SceneManager.LoadScene("calculate");
-        }
-        else
-        {
-            StartCoroutine(CountTime());
-        }
+        tmp.text = string.Format("{0:D2}:{1:D2} {2}",hour+9, minute % 60, x);
+        StartCoroutine(CountTime());
     }
 }
