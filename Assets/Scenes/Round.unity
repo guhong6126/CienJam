@@ -39544,7 +39544,7 @@ MonoBehaviour:
   ErrorAudio: {fileID: 1571502051}
   officeSound: {fileID: 1571502054}
   alarmSound: {fileID: 1571502055}
-  logonSound: {fileID: 0}
+  logonSound: {fileID: 1571502056}
   BgmControl: {fileID: 592950731}
   SfxControl: {fileID: 1443053273}
 --- !u!82 &1571502051
@@ -39748,7 +39748,7 @@ Transform:
   m_GameObject: {fileID: 1571502049}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1014.2685, y: 594.17676, z: -5.2671103}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

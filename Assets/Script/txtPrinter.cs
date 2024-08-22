@@ -6,20 +6,22 @@ using UnityEngine.UI;
 
 public class txtPrinter : MonoBehaviour
 {
+    
+    [Header("Text Settings")]
     public TMP_Text textComponent;       // TMP_Text 컴포넌트를 드래그하여 할당합니다.
     [TextArea(10, 20)]
     public string inputText;             // 입력 텍스트 (여러 줄 입력 가능)
     public float totalDuration = 10f;    // 전체 출력 시간
     public float minCharacterDelay = 0.02f; // 글자당 최소 출력 시간 (최소 0.02초)
-
     private string[] lines;              // 줄 단위로 분리된 텍스트 저장
     private float characterDelay;        // 계산된 글자당 출력 시간
     public ScrollRect scrollRect;
 
-    public GameObject mainScreen;
-    public AudioSource bootingmusic;
+    [Header("Screens")]
+    [SerializeField] private GameObject mainScreen;
+    [SerializeField] private GameObject bootingScreen;
     
-
+    public AudioSource bootingmusic;
     [SerializeField] private AudioSource bottingAudio;
     
     private void Start()
@@ -58,12 +60,9 @@ public class txtPrinter : MonoBehaviour
             yield return StartCoroutine(ShowLineWithCharacters(line));
             textComponent.text += "\n"; // 줄바꿈 추가
         }
-
-        // 모든 텍스트 출력이 완료된 후 디버그 로그 출력
-        
         
         mainScreen.SetActive(true);
-        bootingmusic.Play();
+        bootingScreen.SetActive(false);
         this.gameObject.SetActive(false);
 
     }
